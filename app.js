@@ -1,14 +1,25 @@
 const paper = document.getElementById("paper");
+const muteButton = document.getElementById("muteButton");
 const pen = paper.getContext("2d");
 
 let startTime = new Date().getTime();
 
 let soundEnable = false;
-document.onvisibilitychange = () => soundEnable = false;
+document.onvisibilitychange = () => {
+    muteButton.innerText = "UNMUTE"
+    soundEnable = false;
+}
 
-paper.onclick = () => soundEnable = !soundEnable;
+muteButton.onclick = () => {
+    soundEnable = !soundEnable;
+    if(soundEnable){
+        muteButton.innerText = "MUTE"
+    }else {
+        muteButton.innerText = "UNMUTE"
+    }
+}
 
-const arcs = [
+let colors = [
     "#E6F2FF",
     "#D9E6FF",
     "#CCE0FF",
@@ -30,8 +41,12 @@ const arcs = [
     "#006FFF",
     "#0064FF",
     "#0058FF"
-].map((color, index) => {
-    const audio = new Audio("./assets/1.mp3");
+];
+
+let arcs = colors.map((color, index) => {
+    let i = index  % 21 + 1
+    let src = "./assets/"+ i +".mp3";
+    const audio = new Audio(src);
 
     audio.volume = 0.02;
 
@@ -127,7 +142,6 @@ function draw() {
         drawBackgroundArc(radius, arc.color);
         drawDot(radius, "white", distance);
     })
-
 
     requestAnimationFrame(draw)
 }
