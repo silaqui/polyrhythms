@@ -62,17 +62,17 @@ function draw() {
 
     const start = {
         x: paper.width * 0.1,
-        y: paper.width * 0.9
+        y: paper.height * 0.9
     }
 
     const center = {
         x: paper.width * 0.5,
-        y: paper.width * 0.9
+        y: paper.height * 0.9
     }
 
     const end = {
         x: paper.width * 0.9,
-        y: paper.width * 0.9
+        y: paper.height * 0.9
     }
 
     const length = end.x - start.x;
